@@ -1,19 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    private float speed = 5f;
+    [SerializeField] private float moveSpeed = 5f;
+
+    private PlayerControls playerControls;
+    private Vector2 movement;
     private Rigidbody2D rb;
 
-    void Start()
+    private void Awake()
     {
+        playerControls = new PlayerControls();
         rb = GetComponent<Rigidbody2D>();
     }
-   
-    void Update()
+
+    private void OnEnable()
     {
-        float moveX = Input.GetAxis("Horizontal");
-        float moveY = Input.GetAxis("Vertical");
-        rb.velocity = new Vector2(moveX, moveY ) * speed;
+        playerControls.Enable();
+    }
+
+    private void Update()
+    {
+        PlayerInput();
+    }
+
+    private void FixedUpdate()
+    {
+        Move();
+    }
+
+    private void PlayerInput()
+    {
+        movement = playerControls.Movement.Direction.ReadValue<Vector2>();
+    }
+
+    private void Move()
+    {
+        rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
     }
 }
