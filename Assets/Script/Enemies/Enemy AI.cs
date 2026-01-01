@@ -6,8 +6,11 @@ public class EnemyAI : MonoBehaviour
 {
     private enum State
     {
-        Roaming
+        Roaming,
+        //Chasing
     }
+    //private float detectionRadius = 5f;
+    //private float roamChangeTime = 2f;
     private State state;
     private EnemyPathfinding enemyPathFinding;
 
