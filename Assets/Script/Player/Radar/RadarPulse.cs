@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 public class RadarPulse : MonoBehaviour
 {
+    [SerializeField] private Transform RadarPing;
     private Transform pulseTransform;
     private float range;
     private float rangeMax;
@@ -25,7 +26,7 @@ public class RadarPulse : MonoBehaviour
         }
         pulseTransform.localScale = new Vector3(range, range);
 
-        RaycastHit2D[] raycastHit2DArray = Physics2D.CircleCastAll(transform.position, range/2f, Vector2.zero);
+        RaycastHit2D[] raycastHit2DArray = Physics2D.CircleCastAll(transform.position, range/2f, Vector2.up, 0f);
         foreach (RaycastHit2D raycastHit2D in raycastHit2DArray)
         {
 
@@ -34,7 +35,9 @@ public class RadarPulse : MonoBehaviour
                 if (!AlreadyDetectedCollider.Contains(raycastHit2D.collider))
                 {
                     AlreadyDetectedCollider.Add(raycastHit2D.collider);
-                    Debug.Log("Hit: " + raycastHit2D.collider.name);
+                    Instantiate(RadarPing, raycastHit2D.point, Quaternion.identity);
+
+                   // Debug.Log("Hit: " + raycastHit2D.collider.name);
                 }
             }
         }

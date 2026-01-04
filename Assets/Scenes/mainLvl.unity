@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d85626b83f8ef044f98452364f9ce9e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RadarPulse
+  RadarPing: {fileID: 5363861121798274355, guid: c7c52d963f20735479a14ad116ad197e, type: 3}
 --- !u!4 &3913999
 Transform:
   m_ObjectHideFlags: 0
@@ -156,13 +157,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3913997}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.80664, y: -0.26217, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2052665645}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 88564260}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &88564256
 GameObject:
@@ -197,7 +198,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   moveSpeed: 7
-  radar: {fileID: 0}
 --- !u!50 &88564258
 Rigidbody2D:
   serializedVersion: 5
@@ -273,7 +273,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.3898894, g: 0.7169812, b: 0.3370713, a: 1}
+  m_Color: {r: 0.17565061, g: 0.77044016, b: 0.22189647, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -295,7 +295,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 3913999}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &88564261
@@ -818,8 +819,8 @@ Transform:
   m_GameObject: {fileID: 2052665644}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.68, y: 0.12, z: 0}
-  m_LocalScale: {x: 0.23, y: 0.23, z: 0.23}
+  m_LocalPosition: {x: -1.81, y: 0.21, z: 0}
+  m_LocalScale: {x: 0.55, y: 0.55, z: 0.55}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3913999}
@@ -871,8 +872,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -701218531420975084, guid: 5e5ecc9cf81a37e49b67af3facd3765d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 3988608447697649724, guid: a50597bb02fe4924cbb0cccd0c85d40e, type: 3}
+  m_Color: {r: 0.05050075, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -948,4 +949,3 @@ SceneRoots:
   - {fileID: 88564260}
   - {fileID: 2637008064371006436}
   - {fileID: 419286765}
-  - {fileID: 3913999}

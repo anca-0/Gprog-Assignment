@@ -9,14 +9,14 @@ public class PlayerController : MonoBehaviour
     private PlayerControls playerControls;
     private Vector2 movement;
     private Rigidbody2D rb;
-    [SerializeField] private RadarScan radar;
+    
 
 
     private void Awake()
     {
         playerControls = new PlayerControls();
         rb = GetComponent<Rigidbody2D>();
-        playerControls.Movement.Interact.performed += ctx => OnInteract();
+        
     }
 
     private void OnEnable()
@@ -44,12 +44,5 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
     }
 
-    private void OnInteract()
-    {
-        if (radar == null)
-        {
-            radar.ScanForEnemies();
-        }
-        else Debug.LogWarning("nuh uh");
-    }
+ 
 }
