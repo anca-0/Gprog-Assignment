@@ -1,33 +1,38 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
 
 public class EnemySpawner : MonoBehaviour
 {
 
    [SerializeField] private GameObject EnemyPrefab;
-    [SerializeField] private float minSpawnTime;
-    [SerializeField] private float maxSpawnTime;
+    [SerializeField] private float spawnIntervat=3f;
+    [SerializeField] private float maxEnemies=5;
 
-    private float timeUntilNextSpawn;
+    private float spawnTimer;
+    private List<GameObject> spawnedEnemies = new List<GameObject>();
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
-    {
-        SetTimeUntilSpawn();
-    }
-
-    // Update is called once per frame
+  
     void Update()
     {
-        timeUntilNextSpawn -= Time.deltaTime;
-        if (timeUntilNextSpawn <= 0)
+        //remove destroyed enemies from the list
+        spawnedEnemies.RemoveAll(enemy => enemy == null);
+
+        //only spawn if we are below the max enemy count
+        if (spawnedEnemies.Count < maxEnemies)
         {
-            Instantiate(EnemyPrefab, transform.position, Quaternion.identity);
-            SetTimeUntilSpawn();
+            spawnTimer += Time.deltaTime;
+            if (spawnTimer >= spawnIntervat)
+            {
+                SpawnEnemy();
+                spawnTimer = 0f;
+            }
         }
     }
-    private void SetTimeUntilSpawn() 
+    private void SpawnEnemy()
     {
-        timeUntilNextSpawn = Random.Range(minSpawnTime, maxSpawnTime);
-
+        GameObject newEnemy = Instantiate(EnemyPrefab, transform.position, Quaternion.identity);
+        spawnedEnemies.Add(newEnemy);
     }
+    
 }

@@ -102,7 +102,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Interact"",
+                    ""name"": ""Pulse"",
                     ""type"": ""Button"",
                     ""id"": ""6201a1ce-829f-4d57-8e62-381c4271b1dd"",
                     ""expectedControlType"": """",
@@ -169,23 +169,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9a574061-2dc9-4c98-b2d6-108599e998be"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""31b505fd-fbf1-4cee-956e-7cee09a79724"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Interact"",
+                    ""action"": ""Pulse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -197,7 +186,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // Movement
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
         m_Movement_Direction = m_Movement.FindAction("Direction", throwIfNotFound: true);
-        m_Movement_Interact = m_Movement.FindAction("Interact", throwIfNotFound: true);
+        m_Movement_Pulse = m_Movement.FindAction("Pulse", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -279,7 +268,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Movement;
     private List<IMovementActions> m_MovementActionsCallbackInterfaces = new List<IMovementActions>();
     private readonly InputAction m_Movement_Direction;
-    private readonly InputAction m_Movement_Interact;
+    private readonly InputAction m_Movement_Pulse;
     /// <summary>
     /// Provides access to input actions defined in input action map "Movement".
     /// </summary>
@@ -296,9 +285,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Direction => m_Wrapper.m_Movement_Direction;
         /// <summary>
-        /// Provides access to the underlying input action "Movement/Interact".
+        /// Provides access to the underlying input action "Movement/Pulse".
         /// </summary>
-        public InputAction @Interact => m_Wrapper.m_Movement_Interact;
+        public InputAction @Pulse => m_Wrapper.m_Movement_Pulse;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -328,9 +317,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Direction.started += instance.OnDirection;
             @Direction.performed += instance.OnDirection;
             @Direction.canceled += instance.OnDirection;
-            @Interact.started += instance.OnInteract;
-            @Interact.performed += instance.OnInteract;
-            @Interact.canceled += instance.OnInteract;
+            @Pulse.started += instance.OnPulse;
+            @Pulse.performed += instance.OnPulse;
+            @Pulse.canceled += instance.OnPulse;
         }
 
         /// <summary>
@@ -345,9 +334,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Direction.started -= instance.OnDirection;
             @Direction.performed -= instance.OnDirection;
             @Direction.canceled -= instance.OnDirection;
-            @Interact.started -= instance.OnInteract;
-            @Interact.performed -= instance.OnInteract;
-            @Interact.canceled -= instance.OnInteract;
+            @Pulse.started -= instance.OnPulse;
+            @Pulse.performed -= instance.OnPulse;
+            @Pulse.canceled -= instance.OnPulse;
         }
 
         /// <summary>
@@ -396,11 +385,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDirection(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Pulse" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnInteract(InputAction.CallbackContext context);
+        void OnPulse(InputAction.CallbackContext context);
     }
 }

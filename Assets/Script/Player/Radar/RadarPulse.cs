@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+
 public class RadarPulse : MonoBehaviour
 {
     [SerializeField] private Transform RadarPing;
@@ -12,32 +13,39 @@ public class RadarPulse : MonoBehaviour
     private void Awake()
     {
         pulseTransform = transform.Find("Pulse");
-        rangeMax = 2f;
+        rangeMax = 3f;
         AlreadyDetectedCollider = new List<Collider2D>();
     }
     private void Update()
     {
-        float rangespeed= 1f;
+        float rangespeed= 2f;
         range += rangespeed * Time.deltaTime;
-        if (range >= rangeMax)
+        if (range > rangeMax)
         {
             range = 0f;
             AlreadyDetectedCollider.Clear();
         }
         pulseTransform.localScale = new Vector3(range, range);
 
-        RaycastHit2D[] raycastHit2DArray = Physics2D.CircleCastAll(transform.position, range/2f, Vector2.up, 0f);
+        // Identify owner (e.g. the player) so we can ignore its colliders
+        GameObject owner = transform.root.gameObject;
+
+        RaycastHit2D[] raycastHit2DArray = Physics2D.CircleCastAll(transform.position, range*2f, Vector2.zero);
         foreach (RaycastHit2D raycastHit2D in raycastHit2DArray)
         {
 
             if (raycastHit2D.collider != null)
             {
+                // Ignore collisions with the owner (root) or any of its children, or objects tagged "Player"
+                if (raycastHit2D.collider.gameObject == owner || raycastHit2D.collider.transform.IsChildOf(owner.transform) || raycastHit2D.collider.CompareTag("Player"))
+                    continue;
+
                 if (!AlreadyDetectedCollider.Contains(raycastHit2D.collider))
                 {
                     AlreadyDetectedCollider.Add(raycastHit2D.collider);
                     Instantiate(RadarPing, raycastHit2D.point, Quaternion.identity);
 
-                   // Debug.Log("Hit: " + raycastHit2D.collider.name);
+                    //Debug.Log("Hit: " + raycastHit2D.collider.name);
                 }
             }
         }
