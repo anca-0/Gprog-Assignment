@@ -62,8 +62,13 @@ public class RadarPulse : MonoBehaviour
                 if (!AlreadyDetectedCollider.Contains(raycastHit2D.collider))
                 {
                     AlreadyDetectedCollider.Add(raycastHit2D.collider);
-                    Instantiate(RadarPing, raycastHit2D.point, Quaternion.identity);
+                    Transform radarPingTransform = Instantiate(RadarPing, raycastHit2D.point, Quaternion.identity);
+                    RadarPing radarPing = radarPingTransform.GetComponent<RadarPing>();
+                    if (raycastHit2D.collider.gameObject.GetComponent<EnemyAI>() != null) 
+                    {
+                        radarPing.SetColor(new Color(1, 0, 0));
 
+                    }
                     //Debug.Log("Hit: " + raycastHit2D.collider.name);
                 }
             }
