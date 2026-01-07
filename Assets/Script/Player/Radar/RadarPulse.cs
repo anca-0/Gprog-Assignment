@@ -9,14 +9,33 @@ public class RadarPulse : MonoBehaviour
     private float range;
     private float rangeMax;
     private List<Collider2D> AlreadyDetectedCollider;
+    private bool isPulsing = false;
 
     private void Awake()
     {
         pulseTransform = transform.Find("Pulse");
         rangeMax = 3f;
         AlreadyDetectedCollider = new List<Collider2D>();
+
+        StartPulse();
     }
     private void Update()
+    {
+        if (isPulsing)
+        {
+            UpdatePulse();
+        }
+    }
+    private void StartPulse()
+    {
+        isPulsing = true;
+        range = 0f;
+        AlreadyDetectedCollider.Clear();
+
+        if(pulseTransform!=null) pulseTransform.gameObject.SetActive(true);
+    }
+
+    private void UpdatePulse()
     {
         float rangespeed= 2f;
         range += rangespeed * Time.deltaTime;
