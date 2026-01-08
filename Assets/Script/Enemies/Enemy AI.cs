@@ -37,12 +37,12 @@ public class EnemyAI : MonoBehaviour
             var go = GameObject.FindGameObjectWithTag("Player");
             if (go != null) player = go.transform;
         }
-        Debug.Log($"Enemy {gameObject.name}: Player found = {player != null}");
+        //Debug.Log($"Enemy {gameObject.name}: Player found = {player != null}");
     }
 
     private void Start()
     {
-        Debug.Log($"Enemy {gameObject.name}: Starting roaming");
+       // Debug.Log($"Enemy {gameObject.name}: Starting roaming");
         SetState(State.Roaming);
     }
 
@@ -65,10 +65,10 @@ public class EnemyAI : MonoBehaviour
 
     private void SetState(State newState)
     {
-        Debug.Log($"Enemy {gameObject.name}: SetState called with {newState}, current state is {state}");
+        //Debug.Log($"Enemy {gameObject.name}: SetState called with {newState}, current state is {state}");
         if (newState == state) return;
 
-        Debug.Log($"Enemy {gameObject.name}: Actually changing state to {newState}");
+        //Debug.Log($"Enemy {gameObject.name}: Actually changing state to {newState}");
 
 
         if (currentRoutine != null)
@@ -92,7 +92,7 @@ public class EnemyAI : MonoBehaviour
 
     private IEnumerator RoamingRoutine()
     {
-        Debug.Log($"Enemy {gameObject.name}: RoamingRoutine started");
+        //Debug.Log($"Enemy {gameObject.name}: RoamingRoutine started");
 
         while (state == State.Roaming)
         {
@@ -100,7 +100,7 @@ public class EnemyAI : MonoBehaviour
             Debug.Log($"Enemy {gameObject.name}: Moving to {roamPosition}");
             enemyPathFinding.MoveTo(roamPosition);
 
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(4f);
         }
     }
 

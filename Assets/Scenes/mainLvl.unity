@@ -339,9 +339,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ccfb8323bcb69643b475d8e620c3e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerShoot
-  bullet: {fileID: 3230817267276911480, guid: 23e3f949149293245849caed570ff703, type: 3}
-  blltspeed: 2
+  bulletPrefab: {fileID: 0}
+  bulletSpeed: 10
   firePoint: {fileID: 88564260}
+  fireRate: 0.1
 --- !u!1 &419286763
 GameObject:
   m_ObjectHideFlags: 0
@@ -30088,7 +30089,7 @@ GameObject:
   - component: {fileID: 1970301680}
   m_Layer: 0
   m_Name: Collision
-  m_TagString: Untagged
+  m_TagString: walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
