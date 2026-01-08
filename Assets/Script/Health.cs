@@ -1,31 +1,40 @@
 using UnityEngine;
-using System.Collections.Generic;
-using System.Collections;
 
 public class Health : MonoBehaviour
 {
-   /* private int maxHealth = 100;
-    private int currentHealth;
-    public event Action OnDeath;
+    [SerializeField] private float maxHealth = 100f;
+    private float currentHealth;
 
-    private void Awake()
+    protected virtual void Start()
     {
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(int dmg)
+    public virtual void TakeDamage(float damage)
     {
-        currentHealth-=dmg;
-        if(currentHealth<0) currentHealth=0;
-        if (currentHealth <= 0) Die();
+        currentHealth -= damage;
+        Debug.Log(gameObject.name + " took " + damage + " damage. Health: " + currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
     }
-    private void Die()
+
+    protected virtual void Die()
     {
-        OnDeath?.Invoke();
+        Debug.Log(gameObject.name + " died!");
         Destroy(gameObject);
+
     }
-    public int GetCurrentHealth() => currentHealth;
-    public int GetMaxHealth() => maxHealth;
-    public bool IsAlive() => currentHealth > 0; 
-   */
+
+    public float GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+    public float GetHealth() 
+    { 
+        return maxHealth;
+    }
+
 }

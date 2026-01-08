@@ -25,10 +25,12 @@ public class EnemyAI : MonoBehaviour
     [Header("Roam Settings")]
     public float roamRadius = 5f;
 
+    private EnemyInvestigation investigation;
+
     private void Awake()
     {
         enemyPathFinding = GetComponent<EnemyPathfinding>();
-        
+        investigation = GetComponent<EnemyInvestigation>();
 
         if (player == null)
         {
@@ -52,6 +54,7 @@ public class EnemyAI : MonoBehaviour
 
         if (state != State.Chasing && dist <= chaseRange)
         {
+            if (investigation != null) investigation.ClearInvestigations();
             SetState(State.Chasing);
         }
         else if (state == State.Chasing && dist > stopChaseRange)
@@ -119,6 +122,10 @@ public class EnemyAI : MonoBehaviour
         // Using world coordinates avoids all enemies targeting the same unit circle around the origin.
         Vector2 randomOffset = Random.insideUnitCircle * roamRadius;
         return (Vector2)transform.position + randomOffset;
+    }
+    public string GetCurrentState()
+    {
+        return state.ToString();
     }
 
 }

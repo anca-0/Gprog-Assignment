@@ -11,6 +11,8 @@ public class RadarPulse : MonoBehaviour
     private List<Collider2D> AlreadyDetectedCollider;
     private bool isPulsing = false;
 
+    private List<Vector2> currentPingLocations = new List<Vector2>();
+
     private void Awake()
     {
         pulseTransform = transform.Find("Pulse");
@@ -31,8 +33,9 @@ public class RadarPulse : MonoBehaviour
         isPulsing = true;
         range = 0f;
         AlreadyDetectedCollider.Clear();
+        currentPingLocations.Clear();
 
-        if(pulseTransform!=null) pulseTransform.gameObject.SetActive(true);
+        if (pulseTransform!=null) pulseTransform.gameObject.SetActive(true);
     }
 
     private void UpdatePulse()
@@ -41,7 +44,9 @@ public class RadarPulse : MonoBehaviour
         range += rangespeed * Time.deltaTime;
         if (range > rangeMax)
         {
+            BroadcastPingToEnemy();
             range = 0f;
+            isPulsing = false;
             AlreadyDetectedCollider.Clear();
         }
         pulseTransform.localScale = new Vector3(range, range);
@@ -62,6 +67,10 @@ public class RadarPulse : MonoBehaviour
                 if (!AlreadyDetectedCollider.Contains(raycastHit2D.collider))
                 {
                     AlreadyDetectedCollider.Add(raycastHit2D.collider);
+
+                    Vector2 pingPosition = raycastHit2D.point;
+                    currentPingLocations.Add(pingPosition);
+
                     Transform radarPingTransform = Instantiate(RadarPing, raycastHit2D.point, Quaternion.identity);
                     RadarPing radarPing = radarPingTransform.GetComponent<RadarPing>();
                     if (raycastHit2D.collider.gameObject.GetComponent<EnemyAI>() != null) 
@@ -75,5 +84,17 @@ public class RadarPulse : MonoBehaviour
         }
 
     }
-    
+    private void BroadcastPingToEnemy()
+    {
+        if (currentPingLocations.Count == 0) return;
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+           if(enemy.TryGetComponent<EnemyInvestigation>(out var investigation))
+            {
+                investigation.ReceivePingLoc(currentPingLocations);
+            }
+        }
+    }
+
 }

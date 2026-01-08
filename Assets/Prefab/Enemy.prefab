@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6952404841476105195}
   - component: {fileID: 8088491245007998710}
   - component: {fileID: 5725725268785925942}
+  - component: {fileID: 241515028217760177}
+  - component: {fileID: 1855211435329379788}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -106,6 +108,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7efa1e754262b04584f3b2e92c4489b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
+  player: {fileID: 0}
+  chaseRange: 3
+  stopChaseRange: 5
+  roamRadius: 5
 --- !u!114 &6952404841476105195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,3 +198,30 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &241515028217760177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5027079485348250035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 962cc363c5971f744b13286941c77a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyInvestigation
+--- !u!114 &1855211435329379788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5027079485348250035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db88f035d14651c488fe0ef44e4f8294, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DealDamage
+  damageAmount: 10
+  targetTag: Player
+  destroyOnHit: 0
