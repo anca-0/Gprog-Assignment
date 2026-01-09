@@ -3,50 +3,52 @@ using UnityEngine.InputSystem;
 
 public class PlayerShoot : MonoBehaviour
 {
-    [SerializeField] private GameObject bulletPrefab; // Renamed to avoid confusion
+    [SerializeField] private GameObject bulletPrefab; 
     [SerializeField] private float bulletSpeed = 10f;
-    [SerializeField] private Transform firePoint; // Optional: spawn point for bullets
-    [SerializeField] private float fireRate = 0.1f; // Time between shots
+    [SerializeField] private Transform firePoint; 
+    [SerializeField] private float fireRate = 0.5f;
 
-    private bool fireContinuous;
+    private PlayerControls playerControls;
     private float nextFireTime;
 
-    void Update()
+    private void Awake()
     {
-        if (fireContinuous && Time.time >= nextFireTime)
-        {
-            FireBullet();
-            nextFireTime = Time.time + fireRate;
-        }
+        playerControls = new PlayerControls();
     }
 
-    private void FireBullet()
+    private void OnEnable()
     {
-        // Get mouse position in world space
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = 0;
+        playerControls.Enable();
+        playerControls.Movement.Fire.performed += _ => Shoot();
+    }
 
-        // Calculate direction from player to mouse
+    private void OnDisable()
+    {
+        playerControls.Movement.Fire.performed -= _ => Shoot();
+        playerControls.Disable();
+    }
+
+    private void Shoot()
+    {
+        if(Time.time< nextFireTime)
+        {
+            return;
+        }
+        nextFireTime = Time.time + fireRate;
+        Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, 0));
+
         Vector2 direction = (mousePos - transform.position).normalized;
-
-        // Spawn position
         Vector3 spawnPos = firePoint != null ? firePoint.position : transform.position;
-
-        // Instantiate bullet with correct rotation
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        GameObject spawnedBullet = Instantiate(bulletPrefab, spawnPos, Quaternion.Euler(0, 0, angle));
-
-        // Set bullet velocity
-        Rigidbody2D rb = spawnedBullet.GetComponent<Rigidbody2D>();
+        
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
             rb.linearVelocity = direction * bulletSpeed;
         }
-    }
 
-    private void OnAttack(InputValue value)
-    {
-        fireContinuous = value.isPressed;
+
     }
 
 }

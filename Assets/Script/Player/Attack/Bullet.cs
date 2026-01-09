@@ -3,7 +3,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float lifetime = 5f;
-    [SerializeField] private int damage = 1;
+    [SerializeField] private int damage = 10;
 
     private void Start()
     {
@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (collision.CompareTag("Wall"))
+        if (collision.CompareTag("walls"))
         {
             Destroy(gameObject);
         }
