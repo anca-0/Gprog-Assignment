@@ -53,7 +53,7 @@ public class RadarPulse : MonoBehaviour
         }
         pulseTransform.localScale = new Vector3(range, range);
 
-        // Identify owner (e.g. the player) so we can ignore its colliders
+        
         GameObject owner = transform.root.gameObject;
 
         RaycastHit2D[] raycastHit2DArray = Physics2D.CircleCastAll(transform.position, range*2f, Vector2.zero);
@@ -62,7 +62,7 @@ public class RadarPulse : MonoBehaviour
 
             if (raycastHit2D.collider != null)
             {
-                // Ignore collisions with the owner (root) or any of its children, or objects tagged "Player"
+                
                 if (raycastHit2D.collider.gameObject == owner || raycastHit2D.collider.transform.IsChildOf(owner.transform) || raycastHit2D.collider.CompareTag("Player"))
                     continue;
                 if ( raycastHit2D.collider.CompareTag("walls"))
@@ -86,7 +86,7 @@ public class RadarPulse : MonoBehaviour
                         }
 
                     }
-                    //Debug.Log("Hit: " + raycastHit2D.collider.name);
+                    Debug.Log("Hit: " + raycastHit2D.collider.name);
                 }
             }
         }

@@ -22,4 +22,9 @@ public class StartMenuController : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void OnBackToMenuClicked()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }
