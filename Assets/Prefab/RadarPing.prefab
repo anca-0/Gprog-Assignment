@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5363861121798274355}
   - component: {fileID: 8625573124457988889}
   - component: {fileID: 5497559776979137261}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: RadarPing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,8 +78,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1748453031
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayer: 4
+  m_SortingOrder: 3
   m_Sprite: {fileID: -7836547626844648322, guid: 9df0ea53e8055594393e68efd1482d1f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

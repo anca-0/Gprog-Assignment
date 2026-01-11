@@ -37,12 +37,10 @@ public class EnemyAI : MonoBehaviour
             var go = GameObject.FindGameObjectWithTag("Player");
             if (go != null) player = go.transform;
         }
-        //Debug.Log($"Enemy {gameObject.name}: Player found = {player != null}");
     }
 
     private void Start()
     {
-       // Debug.Log($"Enemy {gameObject.name}: Starting roaming");
         SetState(State.Roaming);
     }
 
@@ -65,11 +63,10 @@ public class EnemyAI : MonoBehaviour
 
     private void SetState(State newState)
     {
-        //Debug.Log($"Enemy {gameObject.name}: SetState called with {newState}, current state is {state}");
+        
         if (newState == state) return;
 
-        //Debug.Log($"Enemy {gameObject.name}: Actually changing state to {newState}");
-
+        
 
         if (currentRoutine != null)
         {
@@ -92,12 +89,11 @@ public class EnemyAI : MonoBehaviour
 
     private IEnumerator RoamingRoutine()
     {
-        //Debug.Log($"Enemy {gameObject.name}: RoamingRoutine started");
+       
 
         while (state == State.Roaming)
         {
             Vector2 roamPosition = GetRoamingPosition();
-            Debug.Log($"Enemy {gameObject.name}: Moving to {roamPosition}");
             enemyPathFinding.MoveTo(roamPosition);
 
             yield return new WaitForSeconds(4f);
@@ -118,8 +114,7 @@ public class EnemyAI : MonoBehaviour
 
     private Vector2 GetRoamingPosition()
     {
-        // Pick a random point within a circle around the enemy's current position.
-        // Using world coordinates avoids all enemies targeting the same unit circle around the origin.
+        
         Vector2 randomOffset = Random.insideUnitCircle * roamRadius;
         return (Vector2)transform.position + randomOffset;
     }

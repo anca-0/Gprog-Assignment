@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Pulse
   - walls
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Fog
   - 
   - radar
   - 
@@ -52,6 +53,15 @@ TagManager:
     locked: 0
   - name: bullet
     uniqueID: 1292077797
+    locked: 0
+  - name: enemy
+    uniqueID: 3378576067
+    locked: 0
+  - name: Coins
+    uniqueID: 2490263469
+    locked: 0
+  - name: fog
+    uniqueID: 107562841
     locked: 0
   - name: Player
     uniqueID: 2546514265

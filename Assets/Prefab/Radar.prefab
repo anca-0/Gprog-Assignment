@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8158614891926544376}
   - component: {fileID: 6068517183399664024}
-  m_Layer: 3
+  m_Layer: 20
   m_Name: Radar
   m_TagString: Pulse
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7655295583747374784}
   - component: {fileID: 2095909019444513999}
-  m_Layer: 3
+  m_Layer: 20
   m_Name: Pulse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,8 +123,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1748453031
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayer: 4
+  m_SortingOrder: 3
   m_Sprite: {fileID: 3988608447697649724, guid: a50597bb02fe4924cbb0cccd0c85d40e, type: 3}
   m_Color: {r: 0.05050075, g: 1, b: 0, a: 1}
   m_FlipX: 0
