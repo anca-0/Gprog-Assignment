@@ -39,19 +39,19 @@ public class EnemyInvestigation : MonoBehaviour
         else if (investigateQ.Count > 0)
         {
             currentInvestigTarget = investigateQ.Dequeue();
-            Debug.Log($"{gameObject.name} dequeued position {currentInvestigTarget.Value}. Queue remaining: {investigateQ.Count}");
+            //Debug.Log(gameObject.name + "dequeued position" + currentInvestigTarget.Value + ". Queue remaining:" investigateQ.Count);
         }
     }
 
     public void AddInvestigationPoint(Vector2 playerPos)
     {
         investigateQ.Enqueue(playerPos);
-        Debug.Log($"{gameObject.name} added investigation point at {playerPos}. Total in queue: {investigateQ.Count}");
+        //Debug.Log(gameObject.name + " added investigation point at " + playerPos + ". Total in queue: " + investigateQ.Count);
     }
     public void ReceivePingLoc(List<Vector2> pingLocations)
     {
         foreach (Vector2 pingPos in pingLocations) investigateQ.Enqueue(pingPos);
-        Debug.Log($"{gameObject.name} received {pingLocations.Count} pings. Total in queue: {investigateQ.Count}");
+        //Debug.Log(gameObject.name + " received " + pingLocations.Count + " pings. Total in queue: " + investigateQ.Count);
     }
 
     private void ReachedInvestigationPoint()

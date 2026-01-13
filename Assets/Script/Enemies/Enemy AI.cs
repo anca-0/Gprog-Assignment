@@ -17,12 +17,10 @@ public class EnemyAI : MonoBehaviour
     private EnemyPathfinding enemyPathFinding;
     private Coroutine currentRoutine;
 
-    [Header("Chase Settings")]
     public Transform player;
     public float chaseRange = 3f;
     public float stopChaseRange = 5f;
-
-    [Header("Roam Settings")]
+   
     public float roamRadius = 5f;
 
     private EnemyInvestigation investigation;

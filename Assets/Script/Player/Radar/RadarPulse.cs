@@ -63,7 +63,7 @@ public class RadarPulse : MonoBehaviour
             if (raycastHit2D.collider != null)
             {
                 
-                if (raycastHit2D.collider.gameObject == owner || raycastHit2D.collider.transform.IsChildOf(owner.transform) || raycastHit2D.collider.CompareTag("Player"))
+                if ( raycastHit2D.collider.CompareTag("Player"))
                     continue;
                 if ( raycastHit2D.collider.CompareTag("walls"))
                     continue;
