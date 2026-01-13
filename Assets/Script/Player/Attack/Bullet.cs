@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            Health enemyHealth = collision.GetComponent<Health>();
+            IDamageable enemyHealth = collision.GetComponent<IDamageable>();
             if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(damage);

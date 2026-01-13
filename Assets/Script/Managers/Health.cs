@@ -1,7 +1,12 @@
 using UnityEngine;
 
 
-public class Health : MonoBehaviour
+public interface IDamageable
+{
+    void TakeDamage(float damage);
+}
+
+public class Health : MonoBehaviour, IDamageable
 {
     [SerializeField] private float maxHealth = 100f;
     private float currentHealth;
